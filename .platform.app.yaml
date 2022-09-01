@@ -28,7 +28,7 @@ relationships:
 
 hooks:
   build: |
-    set -e
+    doocker-composer build
   deploy: |
     set -e
 
