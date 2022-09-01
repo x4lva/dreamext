@@ -1,0 +1,55 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./docker
+      dockerfile: nginx.docker
+    volumes:
+      - ./:/app
+    depends_on:
+      - php-fpm
+      - mysql
+    ports:
+      - "8080:80"
+
+  php-fpm:
+    build:
+      context: ./docker
+      dockerfile: php-fpm.docker
+    volumes:
+      - ./:/app
+    depends_on:
+      - mysql
+
+  node:
+    image: node:12.13-alpine
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DOCKER_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DOCKER_MYSQL_DATABASE}
+      MYSQL_USER: ${DOCKER_MYSQL_USER}
+      MYSQL_PASSWORD: ${DOCKER_MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+
+  mailer:
+    image: mailhog/mailhog
+    ports:
+      - "8081:8025"
+
+  adminer:
+    image: adminer
+    ports:
+      - "8082:8080"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql:

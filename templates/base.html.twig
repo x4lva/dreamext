@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% set route = app.request.attributes.get('_route') %}
+        {% set route_params = app.request.attributes.get('_route_params') %}
+        {% set params = route_params|merge(app.request.query.all) %}
+
+        <header class="app-header">
+            {{ include('app/components/header.html.twig') }}
+        </header>
+        <main class="main container mt-4">
+            {% block breadcrumbs %}{% endblock %}
+            <div class="app-main">
+                {% include '_flashes.html.twig' %}
+                {% block body %}{% endblock %}
+            </div>
+        </main>
+        <footer class="app-footer container">
+            <div>
+                <span>© {{ "now"|date("Y") }} All rights reserved</span>
+            </div>
+        </footer>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>

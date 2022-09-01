@@ -1,0 +1,21 @@
+security:
+    providers:
+        fetcher:
+            id: App\Security\UserProvider
+    encoders:
+        App\Security\UserIdentity: native
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            user_checker: App\Security\UserChecker
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+                entry_point: App\Security\LoginFormAuthenticator
+
+            form_login: true
+            logout:
+                path:   app_logout

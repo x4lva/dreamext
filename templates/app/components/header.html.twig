@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar scroll</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            {{ knp_menu_render('sidebar', {'currentClass': 'active'}) }}
+            <div class="dropdown me-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ 'language'|trans }}
+                </button>
+                <ul class="dropdown-menu">
+                    {% for locale, locale_name in locales %}
+                        <li>
+                            <a class="dropdown-item" href="{{ path(route ~ '.' ~ locale,params|merge({_locale: locale})) }}">
+                                {{ locale_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="d-flex gap-2">
+                <a class="btn btn-light" href="{{ path('app_login') }}">{{ 'sing.in'|trans }}</a>
+                <a class="btn btn-light" href="{{ path('auth.signup') }}">{{ 'sing.up'|trans }}</a>
+            </div>
+        </div>
+    </div>
+</nav>

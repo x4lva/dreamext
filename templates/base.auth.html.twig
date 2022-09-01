@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        {% block formBody %}{% endblock %}
+                    </div>
+                </div>
+                <div class="card text-white bg-primary py-5 d-md-down-none">
+                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                        {% block formContent %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

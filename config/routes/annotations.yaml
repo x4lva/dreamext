@@ -1,0 +1,11 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+    options: { utf8: true }
+    prefix:
+        en: ''
+        ua: '/ua'
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: annotation

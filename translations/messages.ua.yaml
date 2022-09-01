@@ -1,0 +1,18 @@
+home: Головна
+
+sing:
+  in: Увійти
+  up: Зареєструватись
+
+language: Мова
+
+forms:
+  user:
+    firstName: Ім'я
+    lastName: Прізвище
+    email: Email
+    password: Пароль
+
+    forgotPassword: Забули пароль?
+    submit: Створити Користувача
+    remember: Запам'ятати мене

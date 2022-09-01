@@ -1,0 +1,18 @@
+home: Home
+
+sing:
+  in: Log in
+  up: Sign up
+
+language: Language
+
+forms:
+  user:
+    firstName: First Name
+    lastName: Last Name
+    email: Email
+    password: Password
+
+    forgotPassword: Forgot password?
+    submit: Create User
+    remember: Remember me

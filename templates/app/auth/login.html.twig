@@ -1,0 +1,43 @@
+{% extends 'base.auth.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block formBody %}
+    <h1>Log In</h1>
+
+    <p class="text-muted">Sign In to your account</p>
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <div class="input-group mb-3">
+            <input class="form-control" type="email" name="email" value="{{ last_username }}" placeholder="{{ 'forms.user.email'|trans }}" />
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="password" name="password" placeholder="{{ 'forms.user.password'|trans }}" />
+        </div>
+        <div class="form-group">
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> <span class="text-muted">{{ 'forms.user.remember'|trans }}</span>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-primary px-4" type="submit">{{ 'sing.in'|trans }}</button>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-link px-0" href="">{{ 'forms.user.forgotPassword'|trans }}</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block formContent %}
+    <h2>Sign up</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua.</p>
+    <a class="btn btn-primary active mt-3 w-auto" href="">Register Now!</a>
+{% endblock %}
