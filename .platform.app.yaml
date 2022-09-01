@@ -1,6 +1,8 @@
 name: dreamex
 
 type: 'php:7.2'
+build:
+  flavor: composer
 
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
@@ -33,5 +35,8 @@ hooks:
 web:
   locations:
     '/':
-      root: "web"
+      root: "dreamex"
       passthru: "/index.php"
+      index:
+        - index.php
+      allow: true
