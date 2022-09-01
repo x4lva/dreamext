@@ -1,43 +1,66 @@
 name: app
 
-# The runtime the application uses. The 'type' key defines the base container
-# image that will be used to run the application. There is a separate base
-# container image for each primary language for the application,
-# in multiple versions. Check the PHP documentation
-# (https://docs.platform.sh/languages/php.html#supported-versions)
-# to find the supported versions for the 'php' type.
-type: 'php:8.1'
+type: php:8.0
 
-# The following block defines a single writable directory, 'web/uploads'
-# The 'source' specifies where the writable mount is. The 'local' source
-# indicates that the mount point will point to a local directory on the
-# application container. The 'source_path' specifies the subdirectory
-# from within the source that the mount should point at.
-mounts:
-  'web/uploads':
-    source: local
-    source_path: uploads
+dependencies:
+  php:
+    composer/composer: "^2"
 
-# The size of the persistent disk of the application (in MB).
-disk: 256
-
-# The relationships of the application with services or other applications.
-#
-# The left-hand side is the name of the relationship as it will be exposed
-# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
-# side is in the form '<service name>:<endpoint name>'.
-relationships:
-  database: 'db:mysql'
+runtime:
+  extensions:
+    - apcu
+    - ctype
+    - iconv
+    - mbstring
+    - pdo_mysql
+    - sodium
+    - xsl
 
 
-hooks:
-  build: |
-    set -e
-  deploy: |
-    set -e
+variables:
+  php:
+    opcache.preload: /app/config/preload.php
+build:
+  flavor: none
+
+disk: 1024
 
 web:
   locations:
-    '/':
-      root: "web"
+    "/":
+      root: "public"
+      expires: 1h
       passthru: "/index.php"
+
+mounts:
+  "/var": { source: local, source_path: var }
+
+
+relationships:
+  database: "database:mysql"
+
+hooks:
+  build: |
+    set -x -e
+
+    curl -fs https://get.symfony.com/cloud/configurator | bash
+
+    symfony-build
+
+  deploy: |
+    set -x -e
+
+    symfony-deploy
+
+crons:
+  security-check:
+    # Check that no security issues have been found for PHP packages deployed in production
+    # See https://github.com/fabpot/local-php-security-checker
+    spec: '50 23 * * *'
+    cmd: if [ "$PLATFORM_BRANCH" = "main" ]; then croncape php-security-checker; fi
+
+workers:
+  messenger:
+    commands:
+      # Consume "async" messages (as configured in the routing section of config/packages/messenger.yaml)
+      start: symfony console --time-limit=3600 --memory-limit=64M messenger:consume async
