@@ -1,8 +1,8 @@
 name: dreamex
 
-type: 'php:7.2'
+type: 'php:8.0'
 build:
-  flavor: composer
+  flavor: 'composer'
 
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
