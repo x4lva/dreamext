@@ -35,7 +35,7 @@ class Form extends AbstractType
                 ]
             ])
             ->add('submit', Type\SubmitType::class, [
-                'label' => 'sing.upw'
+                'label' => 'sing.up'
             ])
         ;
     }
