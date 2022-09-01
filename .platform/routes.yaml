@@ -1,6 +1,6 @@
 "https://www.{default}/":
   type: upstream
-  upstream: "dreamex:http"
+  upstream: "app:http"
 
 "https://{default}/":
   type: redirect

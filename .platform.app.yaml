@@ -1,8 +1,12 @@
-name: dreamex
+name: app
 
-type: 'php:8.0'
-build:
-  flavor: 'composer'
+# The runtime the application uses. The 'type' key defines the base container
+# image that will be used to run the application. There is a separate base
+# container image for each primary language for the application,
+# in multiple versions. Check the PHP documentation
+# (https://docs.platform.sh/languages/php.html#supported-versions)
+# to find the supported versions for the 'php' type.
+type: 'php:8.1'
 
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
@@ -10,7 +14,7 @@ build:
 # application container. The 'source_path' specifies the subdirectory
 # from within the source that the mount should point at.
 mounts:
-  'public/uploads':
+  'web/uploads':
     source: local
     source_path: uploads
 
@@ -28,15 +32,12 @@ relationships:
 
 hooks:
   build: |
-    doocker-composer build
+    set -e
   deploy: |
     set -e
 
 web:
   locations:
     '/':
-      root: "dreamex"
+      root: "web"
       passthru: "/index.php"
-      index:
-        - index.php
-      allow: true
