@@ -10,5 +10,6 @@ class AuthView
     public $email;
     public $password_hash;
     public $name;
+    public $role;
     public $status;
 }

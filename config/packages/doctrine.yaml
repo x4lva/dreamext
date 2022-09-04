@@ -8,6 +8,8 @@ doctrine:
 
         url: '%env(resolve:DATABASE_URL)%'
 
+        types:
+            user_user_role: 'App\Model\User\Entity\UserRoleType'
     orm:
         auto_generate_proxy_classes: true
         auto_mapping: true
@@ -17,4 +19,10 @@ doctrine:
                 type: annotation
                 dir: '%kernel.project_dir%/src/Model/User/Entity'
                 prefix: 'App\Model\User\Entity'
-                alias: App
+                alias: User
+            Post:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Post/Entity'
+                prefix: 'App\Model\Post\Entity'
+                alias: Post

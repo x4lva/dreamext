@@ -1,0 +1,45 @@
+{% macro printNewTranslationForm(translation) %}
+<div class="row meta-item">
+    <div class="col-sm-12 col-md-12 col-xl-4">
+        {{ form_row(translation.languageCode) }}
+        {{ form_row(translation.title) }}
+        {{ form_row(translation.slug) }}
+    </div>
+    <div class="col-sm-12 col-md-12 col-xl-8">
+        {{ form_row(translation.content) }}
+    </div>
+</div>
+{% endmacro %}
+
+{% import _self as formMacros %}
+
+<div class="card p-4">
+    <div class="card-body">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div id="post-translations" class="metas"
+             data-widget-counter="{{ form.translations|length }}"
+             data-widget-tags="{{ 'div'|e }}"
+             data-prototype="{{ formMacros.printNewTranslationForm(form.translations.vars.prototype)|e('html_attr') }}">
+            {% for translation in form.translations %}
+                {{ formMacros.printNewTranslationForm(translation) }}
+            {% endfor %}
+        </div>
+
+
+
+        <div class="d-flex gap-3">
+            <button type="button"
+                    class="add-another-collection-widget btn btn-dark"
+                    data-max="{{ locales|length }}"
+                    data-list-selector="#post-translations">
+                {{ 'forms.post.addTransaltion'|trans }}
+            </button>
+
+            {{ form_widget(form.submit) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>

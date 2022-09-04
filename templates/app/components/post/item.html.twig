@@ -1,0 +1,32 @@
+<div class="card">
+    <h5 class="card-header p-4">{{ post.title(LOCALE) }}</h5>
+    <div class="card-body p-4">
+        <p class="card-text">
+            {{
+                post.content(LOCALE)|length > 450 ?
+                post.content(LOCALE)|striptags|slice(0, 450) ~ '...' :
+                post.content(LOCALE)|striptags
+            }}
+        </p>
+        <p class="card-text">
+            <small class="text-muted">
+                {{ post.user.name.first }} {{ post.user.name.last }}, {{ post.date|date('d.m.Y H:i') }}, {{ post.user.email }}
+            </small>
+        </p>
+
+        <div class="d-flex gap-2">
+            <a href="{{ path('posts.view', { 'slug': post.slug(LOCALE) }) }}" class="btn btn-primary">
+                {{ 'forms.read'|trans }}
+            </a>
+
+            {% if app.user is not null and app.user.id == post.user.id %}
+                <a href="{{ path('posts.edit', { 'id': post.id }) }}" class="btn btn-outline-secondary">
+                    {{ 'forms.edit'|trans }}
+                </a>
+                <a href="{{ path('posts.edit', { 'id': post.id }) }}" class="btn btn-outline-danger">
+                    {{ 'forms.delete'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

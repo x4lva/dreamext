@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumbs %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="card p-4">
+        <div class="card-body">
+            <h2>{{ postTranslation.title }}</h2>
+            <p class="card-text">
+                {{ postTranslation.content|raw }}
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

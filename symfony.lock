@@ -38,6 +38,21 @@
             "migrations/.gitignore"
         ]
     },
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "2.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.0",
+            "ref": "f5ad42002183a6881962683e6d84bbb25cdfce5d"
+        },
+        "files": [
+            "config/packages/fos_ckeditor.yaml"
+        ]
+    },
+    "gregwar/captcha-bundle": {
+        "version": "v2.2.0"
+    },
     "knplabs/knp-menu-bundle": {
         "version": "v3.2.0"
     },
@@ -231,5 +246,17 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.11.0"
+    },
+    "twig/extensions": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "a86723ee8d8b2f9437c8ce60a5546a1c267da5ed"
+        },
+        "files": [
+            "config/packages/twig_extensions.yaml"
+        ]
     }
 }

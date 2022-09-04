@@ -3,10 +3,16 @@ home: Головна
 sing:
   in: Увійти
   up: Зареєструватись
+logout: Вийти
 
 language: Мова
 
 forms:
+  captcha: Каптча
+  edit: Редагувати
+  delete: Видалити
+  read: Читати
+
   user:
     firstName: Ім'я
     lastName: Прізвище
@@ -16,3 +22,29 @@ forms:
     forgotPassword: Забули пароль?
     submit: Створити Користувача
     remember: Запам'ятати мене
+
+  post:
+    title: Заголовок
+    content: Контент
+    language: Мова
+    addTransaltion: Додати переклад
+    slug: Ідентифікатор
+
+    save: Створити Пост
+    edit: Зберегти Пост
+
+    help:
+      slug: Ідентифікатор відображається в посиланні на ваш пост. Він має бути унікальним для перекладів з однаковою мовою.
+
+
+error:
+  post:
+    unique: Пост не може містити одинакові ідентифікатори з одинаковими мовами
+
+create:
+  post: Створити Пост
+
+my:
+  posts: Мої Пости
+
+createdBy: Створено

@@ -8,5 +8,6 @@ class ShortView
 {
     public $id;
     public $email;
+    public $role;
     public $status;
 }

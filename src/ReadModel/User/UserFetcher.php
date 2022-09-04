@@ -43,6 +43,7 @@ class UserFetcher
                 'email',
                 'password_hash',
                 'TRIM(CONCAT(name_first, \' \', name_last)) AS name',
+                'role',
                 'status'
             )
             ->from('user_users')
@@ -64,6 +65,7 @@ class UserFetcher
                 'u.email',
                 'u.password_hash',
                 'TRIM(CONCAT(u.name_first, \' \', u.name_last)) AS name',
+                'role',
                 'u.status'
             )
             ->from('user_users', 'u')
@@ -85,6 +87,7 @@ class UserFetcher
             ->select(
                 'id',
                 'email',
+                'role',
                 'status'
             )
             ->from('user_users')
@@ -104,6 +107,7 @@ class UserFetcher
             ->select(
                 'id',
                 'email',
+                'role',
                 'status'
             )
             ->from('user_users')
@@ -141,6 +145,7 @@ class UserFetcher
                 'date',
                 'TRIM(CONCAT(name_first, \' \', name_last)) AS name',
                 'email',
+                'role',
                 'status'
             )
             ->from('user_users');

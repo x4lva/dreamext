@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\User\Entity;
 
+use App\Model\Post\Entity\Post;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,11 +63,25 @@ class User
      */
     private $status;
 
+    /**
+     * @var Post[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Model\Post\Entity\Post", mappedBy="user", orphanRemoval=true, cascade={"persist"})
+     */
+    private $posts;
+
+    /**
+     * @var UserRole
+     * @ORM\Column(type="user_user_role", length=16)
+     */
+    private $role;
+
     private function __construct(string $id, \DateTimeImmutable $date, UserName $name)
     {
         $this->id = $id;
         $this->date = $date;
         $this->name = $name;
+        $this->role = UserRole::user();
+        $this->posts = new ArrayCollection();
     }
 
     public static function create(string $id, \DateTimeImmutable $date, UserName $name, string $email, string $hash): self
@@ -149,10 +165,7 @@ class User
         return $this->status === self::STATUS_BLOCKED;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
@@ -211,6 +224,19 @@ class User
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function getRole(): UserRole
+    {
+        return $this->role;
+    }
+
+    public function changeRole(UserRole $role): void
+    {
+        if ($this->role->isEqual($role)) {
+            throw new \DomainException('Role is already same.');
+        }
+        $this->role = $role;
     }
 
     /**

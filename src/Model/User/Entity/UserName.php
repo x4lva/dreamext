@@ -15,12 +15,11 @@ class UserName
     /**
      * @ORM\Column(type="string")
      */
-
     private $first;
+
     /**
      * @ORM\Column(type="string")
      */
-
     private $last;
 
     public function __construct(string $first, string $last)

@@ -9,6 +9,7 @@
         {% endblock %}
     </head>
     <body>
+        {% set LOCALE = app.request.locale %}
         {% set route = app.request.attributes.get('_route') %}
         {% set route_params = app.request.attributes.get('_route_params') %}
         {% set params = route_params|merge(app.request.query.all) %}
@@ -25,11 +26,12 @@
         </main>
         <footer class="app-footer container">
             <div>
-                <span>© {{ "now"|date("Y") }} All rights reserved</span>
             </div>
         </footer>
 
         {% block javascripts %}
+            <script src="https://kit.fontawesome.com/4e3e4a6d0e.js" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="/bundles/fosckeditor/ckeditor.js"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </body>

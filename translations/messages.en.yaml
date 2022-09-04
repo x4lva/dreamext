@@ -16,3 +16,9 @@ forms:
     forgotPassword: Forgot password?
     submit: Create User
     remember: Remember me
+
+create:
+  post: Create Post
+
+my:
+  posts: My Posts

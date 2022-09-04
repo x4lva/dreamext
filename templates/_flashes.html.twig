@@ -5,6 +5,6 @@
 {% endfor %}
 {% for message in app.flashes('error') %}
     <div class="alert alert-danger">
-        {{ message }}
+        {{ message|trans }}
     </div>
 {% endfor %}
