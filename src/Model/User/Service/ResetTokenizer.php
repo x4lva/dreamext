@@ -9,18 +9,11 @@ use Ramsey\Uuid\Uuid;
 
 class ResetTokenizer
 {
-    private $interval;
-
-    public function __construct(\DateInterval $interval)
-    {
-        $this->interval = $interval;
-    }
-
     public function generate(): ResetToken
     {
         return new ResetToken(
             Uuid::uuid4()->toString(),
-            (new \DateTimeImmutable())->add($this->interval)
+            (new \DateTimeImmutable())->add(new \DateInterval('PT1H'))
         );
     }
 }

@@ -3,10 +3,20 @@ home: Home
 sing:
   in: Log in
   up: Sign up
+logout: Logout
 
 language: Language
 
+sort:
+  date: Date
+  email: Author Email
+
 forms:
+  captcha: Captcha
+  edit: Edit
+  delete: Delete
+  read: Read
+
   user:
     firstName: First Name
     lastName: Last Name
@@ -16,9 +26,38 @@ forms:
     forgotPassword: Forgot password?
     submit: Create User
     remember: Remember me
+    setPassword: Set Password
+    resetPassword: Reset Password
+
+  post:
+    title: Title
+    content: Content
+    language: Language
+    addTransaltion: Add Translation
+    slug: Slug
+
+    save: Save Post
+    edit: Edit Post
+
+    help:
+      slug: Ідентифікатор відображається в посиланні на ваш пост. Він має бути унікальним для перекладів з однаковою мовою.
+
+error:
+  post:
+    unique: Post can not contains same slugs with same language
 
 create:
   post: Create Post
 
 my:
   posts: My Posts
+
+createdBy: Created
+
+messages:
+  Register Now!: Register Now!
+  Sign in to your account: Sign in to your account
+  Create your account: Create your account
+  Enter your account email: Enter your account email
+
+User is not found.: User is not found.

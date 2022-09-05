@@ -3,13 +3,15 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-
     <div class="card p-3 mb-3">
         <div class="card-body">
-            <div class="d-flex gap-3 align-items-center">
-                {{ form(form) }}
-                {{ knp_pagination_sortable(pagination, 'Date', 'p.date') }}
-                {{ knp_pagination_sortable(pagination, 'Author Email', 'u.email') }}
+            <div class="d-flex gap-3 align-items-center flex-wrap">
+                {{ form_start(form) }}
+                    {{ form_widget(form.title) }}
+                {{ form_end(form) }}
+
+                {{ knp_pagination_sortable(pagination, 'sort.date'|trans, 'p.date') }}
+                {{ knp_pagination_sortable(pagination, 'sort.email'|trans, 'u.email') }}
             </div>
         </div>
     </div>

@@ -40,7 +40,7 @@ class UserRepository
     {
         /** @var User $user */
         if (!$user = $this->repo->find($id)) {
-            throw new EntityNotFoundException('User is not found.');
+            throw new \DomainException('User is not found.');
         }
         return $user;
     }
@@ -49,7 +49,7 @@ class UserRepository
     {
         /** @var User $user */
         if (!$user = $this->repo->findOneBy(['email' => $email])) {
-            throw new EntityNotFoundException('User is not found.');
+            throw new \DomainException('User is not found.');
         }
         return $user;
     }

@@ -7,6 +7,10 @@ logout: Вийти
 
 language: Мова
 
+sort:
+  date: Дата
+  email: Автор
+
 forms:
   captcha: Каптча
   edit: Редагувати
@@ -22,6 +26,8 @@ forms:
     forgotPassword: Забули пароль?
     submit: Створити Користувача
     remember: Запам'ятати мене
+    setPassword: Встановити Пароль
+    resetPassword: Відновити Пароль
 
   post:
     title: Заголовок
@@ -36,7 +42,6 @@ forms:
     help:
       slug: Ідентифікатор відображається в посиланні на ваш пост. Він має бути унікальним для перекладів з однаковою мовою.
 
-
 error:
   post:
     unique: Пост не може містити одинакові ідентифікатори з одинаковими мовами
@@ -48,3 +53,13 @@ my:
   posts: Мої Пости
 
 createdBy: Створено
+
+messages:
+  Register Now!: Зараєструйтесь зараз!
+  Sign in to your account: Увійдіть в свій аккаунт
+  Create your account: Створіть свій аккаунт
+  Enter your account email: Введіть email свого аккаунту
+
+User is not found.: Користвача не знайдено.
+Check your email.: Перевірте свою пошту
+Resetting is already requested.: Відновлення паролю вже запитано

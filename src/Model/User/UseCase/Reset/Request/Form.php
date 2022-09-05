@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ReadModel\Post\Filter;
+namespace App\Model\User\UseCase\Reset\Request;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -14,22 +14,13 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', Type\TextType::class, [
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'forms.post.title',
-                    'onchange' => 'this.form.submit()',
-                ]
-            ])
-        ;
+            ->add('email', Type\EmailType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Filter::class,
-            'method' => 'GET',
-            'csrf_protection' => false,
+            'data_class' => Command::class,
         ]);
     }
 }
