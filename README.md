@@ -17,5 +17,7 @@ docker-compose run node yarn run dev
 ```
 
 http://localhost:8080/ - Running website
+
 http://localhost:8081/ - Mailhog mailer
+
 http://localhost:8082/ - Adminer [Server: mysql, User: root, Password: dreamext, Database: dreamext]
