@@ -21,3 +21,7 @@ http://localhost:8080/ - Running website
 http://localhost:8081/ - Mailhog mailer
 
 http://localhost:8082/ - Adminer [Server: mysql, User: root, Password: dreamext, Database: dreamext]
+
+http://localhost:8080/login 
+AS User:  ```user@gmail.com password```
+AS Admin: ```admin@gmail.com password```
