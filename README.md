@@ -32,3 +32,5 @@ SCREENSHOTS
 
 ![alt text](https://github.com/x4lva/dreamext/blob/master/docs/screenshots/s1.png?raw=true)
 ![alt text](https://github.com/x4lva/dreamext/blob/master/docs/screenshots/s2.png?raw=true)
+
+PS: Without Sonata Admin as it does not fit selected architecture
