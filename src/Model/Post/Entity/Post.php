@@ -77,6 +77,13 @@ class Post
         foreach ($translations as $translation) {
             $this->addTranslation($translation);
         }
+
+        $this->status = self::STATUS_WAIT;
+    }
+
+    public function activate(): void
+    {
+        $this->status = self::STATUS_ACTIVE;
     }
 
     public function addTranslation(PostTranslation $translation): self
@@ -127,6 +134,10 @@ class Post
         return $this->meta;
     }
 
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
     public function getTitle(?string $languageCode = 'en'): ?string
     {
         $translation = $this->translations->filter(function (PostTranslation $translation) use ($languageCode) {

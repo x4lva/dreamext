@@ -32,6 +32,16 @@ class PostRepository
         return $post;
     }
 
+    public function getAll(): array
+    {
+        return $this->repo->findAll();
+    }
+
+    public function getUpApproved(): array
+    {
+        return $this->repo->findBy(['status' => Post::STATUS_WAIT]);
+    }
+
     public function getByUser(string $id): array
     {
         return $this->repo->findBy(['user' => $id]);
@@ -51,6 +61,11 @@ class PostRepository
         if ($filter->title) {
             $qb->andWhere('t.title LIKE :title')
                 ->setParameter('title', '%' . mb_strtolower($filter->title) . '%');
+        }
+
+        if ($filter->status) {
+            $qb->andWhere('p.status = :status')
+                ->setParameter('status', $filter->status);
         }
 
         if (!\in_array($sort, ['p.date', 'p.status', 'u.email'], true)) {

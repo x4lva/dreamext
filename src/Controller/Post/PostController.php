@@ -57,7 +57,11 @@ class PostController extends AbstractController
      */
     public function create(Request $request, Create\Handler $handler): Response
     {
-        $command = new Create\Command($this->getUser()->getId());
+        $command = new Create\Command(
+            $this->getUser()->getId(),
+            $request->getClientIp(),
+            $request->headers->get('User-Agent')
+        );
 
         $form = $this->createForm(Create\Form::class, $command);
         $form->handleRequest($request);
@@ -65,7 +69,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $handler->handle($command);
-                $this->addFlash('success', 'Check your email.');
+                $this->addFlash('success', 'Post created.');
 
                 return $this->redirectToRoute('home');
             } catch (\DomainException $e) {
@@ -80,7 +84,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name=".view")
+     * @Route("/view/{slug}", name=".view")
      * @param Request $request
      * @param string $slug
      * @return Response
@@ -120,6 +124,11 @@ class PostController extends AbstractController
     public function edit(Request $request, Edit\Handler $handler, string $id): Response
     {
         $post = $this->posts->get($id);
+
+        if ($this->getUser()->getId() != $post->getUser()->getId() && !in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
+            $this->addFlash('error', 'You have no access to this page.');
+            return $this->redirectToRoute('home');
+        }
 
         $command = Edit\Command::fromPost($post);
 

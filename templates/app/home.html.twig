@@ -12,6 +12,9 @@
 
                 {{ knp_pagination_sortable(pagination, 'sort.date'|trans, 'p.date') }}
                 {{ knp_pagination_sortable(pagination, 'sort.email'|trans, 'u.email') }}
+                {% if is_granted('ROLE_ADMIN') %}
+                    {{ knp_pagination_sortable(pagination, 'sort.status'|trans, 'p.status') }}
+                {% endif %}
             </div>
         </div>
     </div>

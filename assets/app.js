@@ -23,8 +23,13 @@ window.addEventListener('DOMContentLoaded', () => {
             newElem.innerHTML = newWidget;
 
             const removeButton = document.createElement('div');
-            removeButton.innerHTML = '<div class="btn btn-danger">' +
-                '-' +
+            removeButton.innerHTML =
+                '<div class="row">' +
+                    '<div class="col-sm-12 col-md-12 col-xl-4">' +
+                        '<div class="btn btn-danger mb-3 w-100">' +
+                            removeText +
+                        '</div>' +
+                    '</div>' +
                 '</div>';
 
             newElem.appendChild(removeButton);

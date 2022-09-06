@@ -9,6 +9,7 @@ use App\Service\LocaleHelper;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -37,7 +38,12 @@ class PostTranslationType extends AbstractType
             ])
             ->add('content', CKEditorType::class, [
                 'attr' => ['class' => 'content-editor'],
-                'label' => 'forms.post.content'
+                'label' => 'forms.post.content',
+                'empty_data' => ''
+            ])
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+                'label' => 'forms.post.image'
             ]);
     }
 

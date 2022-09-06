@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Post\Entity\Post;
 use App\Model\Post\Entity\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,11 @@ class HomeController extends AbstractController
     public function index(Request $request): Response
     {
         $filter = new Filter\Filter();
+        $filter->status = Post::STATUS_ACTIVE;
+
+        if ($this->getUser() !== null && in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
+            $filter->status = '';
+        }
 
         $form = $this->createForm(Filter\Form::class, $filter);
         $form->handleRequest($request);

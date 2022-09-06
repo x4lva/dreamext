@@ -12,6 +12,7 @@ use App\Model\User\Service\SignUpConfirmTokenSender;
 use App\Service\IdGenerator;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Security\Core\Security;
 
 class Handler
@@ -22,7 +23,6 @@ class Handler
     private $tokenizer;
     private $sender;
     private $em;
-    private $security;
 
     public function __construct(
         PostRepository $posts,
@@ -30,8 +30,7 @@ class Handler
         PasswordHasher $hasher,
         SignUpConfirmTokenizer $tokenizer,
         SignUpConfirmTokenSender $sender,
-        EntityManagerInterface $em,
-        Security $security
+        EntityManagerInterface $em
     )
     {
         $this->em = $em;
@@ -40,7 +39,6 @@ class Handler
         $this->hasher = $hasher;
         $this->tokenizer = $tokenizer;
         $this->sender = $sender;
-        $this->security = $security;
     }
 
     public function handle(Command $command): void
@@ -52,8 +50,8 @@ class Handler
             new \DateTimeImmutable(),
             $command->translations,
             new PostMeta(
-                '123',
-                '123'
+                $command->ip,
+                $command->browser
             ),
             $user
         );
@@ -64,7 +62,7 @@ class Handler
         $this->posts->add($post);
 
         try {
-            $this->em->flush($post);
+            $this->em->flush();
         } catch (UniqueConstraintViolationException $e) {
             throw new \DomainException('error.post.unique');
         }

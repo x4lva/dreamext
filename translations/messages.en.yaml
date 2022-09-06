@@ -10,12 +10,14 @@ language: Language
 sort:
   date: Date
   email: Author Email
+  status: Status
 
 forms:
   captcha: Captcha
   edit: Edit
   delete: Delete
   read: Read
+  activate: Activate
 
   user:
     firstName: First Name
@@ -35,6 +37,7 @@ forms:
     language: Language
     addTransaltion: Add Translation
     slug: Slug
+    image: Image
 
     save: Save Post
     edit: Edit Post
@@ -61,3 +64,8 @@ messages:
   Enter your account email: Enter your account email
 
 User is not found.: User is not found.
+Check your email.: Check your email.
+Resetting is already requested.: Resetting is already requested.
+Post activated.: Post activated.
+Post created.: Post created.
+You have no access to this page.: You have no access to this page.

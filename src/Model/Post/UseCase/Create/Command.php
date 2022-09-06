@@ -17,14 +17,28 @@ class Command
     public $user;
 
     /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $ip;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    public $browser;
+
+    /**
      * @var PostTranslation[]|ArrayCollection
      * @Assert\NotBlank()
      */
     public $translations;
 
-    public function __construct(string $user)
+    public function __construct(string $user, $ip, $browser)
     {
         $this->user = $user;
+        $this->ip = $ip;
+        $this->browser = $browser;
         $this->translations = new ArrayCollection();
     }
 

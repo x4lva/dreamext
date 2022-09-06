@@ -4,6 +4,7 @@
         {{ form_row(translation.languageCode) }}
         {{ form_row(translation.title) }}
         {{ form_row(translation.slug) }}
+        {{ form_row(translation.imageFile) }}
     </div>
     <div class="col-sm-12 col-md-12 col-xl-8">
         {{ form_row(translation.content) }}
@@ -27,7 +28,7 @@
             {% endfor %}
         </div>
 
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 pt-3">
             <button type="button"
                     class="add-another-collection-widget btn btn-dark"
                     data-max="{{ locales|length }}"
@@ -41,3 +42,9 @@
         {{ form_end(form) }}
     </div>
 </div>
+
+{% block javascript %}
+    <script>
+        const removeText = '{{ 'forms.delete'|trans }}';
+    </script>
+{% endblock %}

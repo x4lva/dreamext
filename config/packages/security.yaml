@@ -19,3 +19,12 @@ security:
             form_login: true
             logout:
                 path:   app_logout
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/posts/create, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/posts/view, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/posts, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

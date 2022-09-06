@@ -19,12 +19,15 @@
                 {{ 'forms.read'|trans }}
             </a>
 
-            {% if app.user is not null and app.user.id == post.user.id %}
+            {% if post.status != 'active' and is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin.posts.activate', { 'id': post.id }) }}" class="btn btn-outline-success">
+                    {{ 'forms.activate'|trans }}
+                </a>
+            {% endif %}
+
+            {% if (app.user is not null and app.user.id == post.user.id) or is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('posts.edit', { 'id': post.id }) }}" class="btn btn-outline-secondary">
                     {{ 'forms.edit'|trans }}
-                </a>
-                <a href="{{ path('posts.edit', { 'id': post.id }) }}" class="btn btn-outline-danger">
-                    {{ 'forms.delete'|trans }}
                 </a>
             {% endif %}
         </div>

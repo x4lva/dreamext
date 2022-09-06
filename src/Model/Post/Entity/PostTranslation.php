@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Model\Post\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
@@ -14,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          columns={"slug", "languageCode"})
  *      }
  * )
+ * @Vich\Uploadable
  */
 class PostTranslation
 {
@@ -51,6 +54,24 @@ class PostTranslation
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $post;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="post_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     public function getId(): string
     {
@@ -105,5 +126,29 @@ class PostTranslation
     public function setPost(Post $post): void
     {
         $this->post = $post;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
     }
 }

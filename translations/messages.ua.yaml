@@ -10,12 +10,14 @@ language: Мова
 sort:
   date: Дата
   email: Автор
+  status: Статус
 
 forms:
   captcha: Каптча
   edit: Редагувати
   delete: Видалити
   read: Читати
+  activate: Активувати
 
   user:
     firstName: Ім'я
@@ -35,6 +37,7 @@ forms:
     language: Мова
     addTransaltion: Додати переклад
     slug: Ідентифікатор
+    image: Зображення
 
     save: Створити Пост
     edit: Зберегти Пост
@@ -63,3 +66,6 @@ messages:
 User is not found.: Користвача не знайдено.
 Check your email.: Перевірте свою пошту
 Resetting is already requested.: Відновлення паролю вже запитано
+Post activated.: Пост активовано.
+Post created.: Пост створено.
+You have no access to this page.: Ви не маєте доступу до цієї сторінки.

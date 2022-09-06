@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev
 
+RUN usermod -u 1000 www-data
+
 RUN docker-php-ext-install pdo pdo_mysql zip
 
 RUN apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev \
