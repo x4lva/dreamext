@@ -28,3 +28,7 @@ AS User:  ```user@gmail.com password```
 
 AS Admin: ```admin@gmail.com password```
 
+SCREENSHOTS
+
+![alt text](https://github.com/x4lva/dreamext/blob/master/docs/screenshots/s1.png?raw=true)
+![alt text](https://github.com/x4lva/dreamext/blob/master/docs/screenshots/s2.png?raw=true)
